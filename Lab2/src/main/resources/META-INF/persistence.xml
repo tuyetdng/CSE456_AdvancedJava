@@ -1,0 +1,88 @@
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <!-- LƯU Ý: FILE CẤU HÌNH PHẢI NẰM Ở ĐÚNG THƯ MỤC resources/META-INF/ -->
+
+    <!-- Mỗi persistence-unit là một đơn vị khai báo để kết nối với một hệ quản trị csdl (MySQL, Oracle, SQL server,...), name phải khác nhau.   -->
+
+<!--    CẤU HÌNH KẾT NỐI DÀNH CHO MYSQL SERVER-->
+    <persistence-unit name="pu1-mysql-masterapp" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!-- Khai báo các entity class để map xuống table, chỉ cần gõ tên class và chọn -->
+         <class>org.tuyetdang.Entity.Student</class>
+        <class>org.tuyetdang.Entity.Lecturer</class>
+        <class>org.tuyetdang.Entity.Subject</class>
+
+        <!-- Cấu hình kết nối CSDL -->
+        <properties>
+
+            <!-- JDBC URL kết nối tới MySQL Server (sửa localhost, tên DB cho đúng với máy của bạn) -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/lab2_b1_cse456"/>
+
+            <!-- Tài khoản đăng nhập Server -->
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="123123123"/>
+
+            <!-- JDBC Driver dùng MySQL Server -->
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+
+            <!-- Chỉ định Hibernate làm provider nối tới MySQLServer -->
+<!--            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>-->
+
+            <!-- Tùy chọn thao tác với CSDL:
+            "none": Không làm gì cả – không kiểm tra, không tạo, không cập nhật gì cả
+            "validate": Kiểm tra bảng có sẵn có khớp với entity không – nếu lệch thì báo lỗi
+            "update": Cập nhật schema: tạo thêm bảng/cột nếu thiếu, không xoá gì cả
+            "create": Xoá toàn bộ bảng cũ rồi tạo bảng mới từ đầu (chỉ dùng khi test, vì mất data!!!)
+            "create-drop": Tạo bảng khi chạy app, xoá toàn bộ bảng khi app dừng
+            "drop": (Hiếm dùng) Xoá toàn bộ bảng khi app khởi động – không tạo lại bảng -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+            <!-- Hiển thị SQL khi chạy (tùy chọn) -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+
+<!--&lt;!&ndash;    CẤU HÌNH KẾT NỐI DÀNH CHO MICROSOFT SQL SERVER&ndash;&gt;-->
+<!--    <persistence-unit name="PU2-SQLServer-masterapp" transaction-type="RESOURCE_LOCAL">-->
+<!--        &lt;!&ndash; Khai báo các entity class để map xuống table &ndash;&gt;-->
+<!--        &lt;!&ndash;        <class>cse456.basic.masterapp.entity.Student</class>&ndash;&gt;-->
+
+<!--        &lt;!&ndash; Cấu hình kết nối CSDL &ndash;&gt;-->
+<!--        <properties>-->
+<!--            &lt;!&ndash; JDBC Driver dùng MS SQL Server &ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>&ndash;&gt;-->
+
+<!--            &lt;!&ndash; JDBC URL kết nối tới SQL Server (sửa localhost, tên DB cho đúng với máy của bạn) &ndash;&gt;-->
+<!--            <property name="jakarta.persistence.jdbc.url"-->
+<!--                      value="jdbc:sqlserver://localhost:1433;databaseName=HSF302;encrypt=true;trustServerCertificate=true"/>-->
+
+<!--            &lt;!&ndash; Tài khoản đăng nhập SQL Server &ndash;&gt;-->
+<!--            <property name="jakarta.persistence.jdbc.user" value="sa"/>-->
+<!--            <property name="jakarta.persistence.jdbc.password" value="sa123456"/>-->
+
+<!--            &lt;!&ndash; Chỉ định Hibernate làm provider nối tới SQLServer &ndash;&gt;-->
+<!--            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>-->
+
+<!--            &lt;!&ndash; Tùy chọn thao tác với CSDL:-->
+<!--            "none": Không làm gì cả – không kiểm tra, không tạo, không cập nhật gì cả-->
+<!--            "validate": Kiểm tra bảng có sẵn có khớp với entity không – nếu lệch thì báo lỗi-->
+<!--            "update": Cập nhật schema: tạo thêm bảng/cột nếu thiếu, không xoá gì cả-->
+<!--            "create": Xoá toàn bộ bảng cũ rồi tạo bảng mới từ đầu-->
+<!--            "create-drop": Tạo bảng khi chạy app, xoá toàn bộ bảng khi app dừng-->
+<!--            "drop": (Hiếm dùng) Xoá toàn bộ bảng khi app khởi động – không tạo lại bảng &ndash;&gt;-->
+<!--            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>-->
+
+<!--            &lt;!&ndash; Hiển thị SQL khi chạy (tùy chọn) &ndash;&gt;-->
+<!--            <property name="hibernate.show_sql" value="true"/>-->
+<!--            <property name="hibernate.format_sql" value="true"/>-->
+<!--        </properties>-->
+<!--    </persistence-unit>-->
+
+
+</persistence>
+
+
