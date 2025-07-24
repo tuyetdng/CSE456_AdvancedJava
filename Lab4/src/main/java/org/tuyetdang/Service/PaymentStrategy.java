@@ -1,5 +1,5 @@
 package org.tuyetdang.Service;
 
 public interface PaymentStrategy {
-    public void transfer(double amount, Long senderId, Long receiverId, String cardNumber, String phoneNumber, String bankAccountNumber );
+    public void makePayment(double amount, Long senderId, Long receiverId, String cardNumber, String phoneNumber, String bankAccountNumber );
 }

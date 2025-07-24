@@ -27,7 +27,7 @@ public class TransactionService {
             String phoneNumber,
             String bankAccountNumber
     ) {
-        paymentStrategy.transfer(amount, senderId, receiverId, cardNumber, phoneNumber, bankAccountNumber);
+        paymentStrategy.makePayment(amount, senderId, receiverId, cardNumber, phoneNumber, bankAccountNumber);
 
         Account sender = accountRepository.findById(senderId);
         Account receiver = accountRepository.findById(receiverId);
